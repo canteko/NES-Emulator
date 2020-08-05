@@ -6,6 +6,7 @@ olc6502::olc6502()
     using a = olc6502;
 	lookup = 
 	{
+        /*
 		{ "BRK", &a::BRK, &a::IMM, 7 },{ "ORA", &a::ORA, &a::IZX, 6 },{ "???", &a::XXX, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 8 },{ "???", &a::NOP, &a::IMP, 3 },{ "ORA", &a::ORA, &a::ZP0, 3 },{ "ASL", &a::ASL, &a::ZP0, 5 },{ "???", &a::XXX, &a::IMP, 5 },{ "PHP", &a::PHP, &a::IMP, 3 },{ "ORA", &a::ORA, &a::IMM, 2 },{ "ASL", &a::ASL, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 2 },{ "???", &a::NOP, &a::IMP, 4 },{ "ORA", &a::ORA, &a::ABS, 4 },{ "ASL", &a::ASL, &a::ABS, 6 },{ "???", &a::XXX, &a::IMP, 6 },
 		{ "BPL", &a::BPL, &a::REL, 2 },{ "ORA", &a::ORA, &a::IZY, 5 },{ "???", &a::XXX, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 8 },{ "???", &a::NOP, &a::IMP, 4 },{ "ORA", &a::ORA, &a::ZPX, 4 },{ "ASL", &a::ASL, &a::ZPX, 6 },{ "???", &a::XXX, &a::IMP, 6 },{ "CLC", &a::CLC, &a::IMP, 2 },{ "ORA", &a::ORA, &a::ABY, 4 },{ "???", &a::NOP, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 7 },{ "???", &a::NOP, &a::IMP, 4 },{ "ORA", &a::ORA, &a::ABX, 4 },{ "ASL", &a::ASL, &a::ABX, 7 },{ "???", &a::XXX, &a::IMP, 7 },
 		{ "JSR", &a::JSR, &a::ABS, 6 },{ "AND", &a::AND, &a::IZX, 6 },{ "???", &a::XXX, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 8 },{ "BIT", &a::BIT, &a::ZP0, 3 },{ "AND", &a::AND, &a::ZP0, 3 },{ "ROL", &a::ROL, &a::ZP0, 5 },{ "???", &a::XXX, &a::IMP, 5 },{ "PLP", &a::PLP, &a::IMP, 4 },{ "AND", &a::AND, &a::IMM, 2 },{ "ROL", &a::ROL, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 2 },{ "BIT", &a::BIT, &a::ABS, 4 },{ "AND", &a::AND, &a::ABS, 4 },{ "ROL", &a::ROL, &a::ABS, 6 },{ "???", &a::XXX, &a::IMP, 6 },
@@ -22,13 +23,15 @@ olc6502::olc6502()
 		{ "BNE", &a::BNE, &a::REL, 2 },{ "CMP", &a::CMP, &a::IZY, 5 },{ "???", &a::XXX, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 8 },{ "???", &a::NOP, &a::IMP, 4 },{ "CMP", &a::CMP, &a::ZPX, 4 },{ "DEC", &a::DEC, &a::ZPX, 6 },{ "???", &a::XXX, &a::IMP, 6 },{ "CLD", &a::CLD, &a::IMP, 2 },{ "CMP", &a::CMP, &a::ABY, 4 },{ "NOP", &a::NOP, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 7 },{ "???", &a::NOP, &a::IMP, 4 },{ "CMP", &a::CMP, &a::ABX, 4 },{ "DEC", &a::DEC, &a::ABX, 7 },{ "???", &a::XXX, &a::IMP, 7 },
 		{ "CPX", &a::CPX, &a::IMM, 2 },{ "SBC", &a::SBC, &a::IZX, 6 },{ "???", &a::NOP, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 8 },{ "CPX", &a::CPX, &a::ZP0, 3 },{ "SBC", &a::SBC, &a::ZP0, 3 },{ "INC", &a::INC, &a::ZP0, 5 },{ "???", &a::XXX, &a::IMP, 5 },{ "INX", &a::INX, &a::IMP, 2 },{ "SBC", &a::SBC, &a::IMM, 2 },{ "NOP", &a::NOP, &a::IMP, 2 },{ "???", &a::SBC, &a::IMP, 2 },{ "CPX", &a::CPX, &a::ABS, 4 },{ "SBC", &a::SBC, &a::ABS, 4 },{ "INC", &a::INC, &a::ABS, 6 },{ "???", &a::XXX, &a::IMP, 6 },
 		{ "BEQ", &a::BEQ, &a::REL, 2 },{ "SBC", &a::SBC, &a::IZY, 5 },{ "???", &a::XXX, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 8 },{ "???", &a::NOP, &a::IMP, 4 },{ "SBC", &a::SBC, &a::ZPX, 4 },{ "INC", &a::INC, &a::ZPX, 6 },{ "???", &a::XXX, &a::IMP, 6 },{ "SED", &a::SED, &a::IMP, 2 },{ "SBC", &a::SBC, &a::ABY, 4 },{ "NOP", &a::NOP, &a::IMP, 2 },{ "???", &a::XXX, &a::IMP, 7 },{ "???", &a::NOP, &a::IMP, 4 },{ "SBC", &a::SBC, &a::ABX, 4 },{ "INC", &a::INC, &a::ABX, 7 },{ "???", &a::XXX, &a::IMP, 7 },
-	};
+        */
+    };
 }
 
 olc6502::~olc6502()
 {
 
 }
+/*
 
 void olc6502::write(uint16_t addr, uint8_t data)
 {
@@ -57,6 +60,11 @@ void olc6502::clock()
     }
 
     cycles--;
+}
+
+uint8_t olc6502::GetFlag(FLAGS6502 f)
+{
+	return ((status & f) > 0) ? 1 : 0;
 }
 
 void olc6502::SetFlag(FLAGS6502 f, bool v)
@@ -217,3 +225,389 @@ uint8_t olc6502::REL()
 
     return 0;
 }
+
+//Instructions
+
+uint8_t olc6502::fetch()
+{
+    if(lookup[opcode].addrmode != &olc6502::IMP)
+    {
+        fetched = read(addr_abs);
+    }
+    return fetched;
+}
+
+uint8_t olc6502::AND()
+{
+    fetch();
+    a = a & fetched;
+    SetFlag(Z, a == 0x00);
+    SetFlag(N, a & 0x80);
+    return 1;
+}
+
+//START BRANCH INSTRUCTIONS
+
+//Default behavior BXX
+inline uint8_t olc6502::BXX()
+{
+    cycles++;
+    addr_abs = pc + addr_rel;
+
+    if ((addr_abs & 0xFF00) != (pc & 0xFF00))
+    {
+        cycles++;
+    }
+
+    pc = addr_abs;
+}
+
+//Branch instructions
+uint8_t olc6502::BCS()
+{
+    if (GetFlag(C) == 1)
+    {
+        BXX();
+    }
+    return 0;
+}
+
+uint8_t olc6502::BCC()
+{
+    if (GetFlag(C) == 0)
+    {
+        BXX();
+    }
+    return 0;
+}
+
+uint8_t olc6502::BEQ()
+{
+    if (GetFlag(Z) == 1)
+    {
+        BXX();
+    }
+    return 0;
+}
+
+uint8_t olc6502::BMI()
+{
+    if (GetFlag(N) == 1)
+    {
+        BXX();
+    }
+    return 0;
+}
+
+uint8_t olc6502::BNE()
+{
+    if (GetFlag(Z) == 0)
+    {
+        BXX();
+    }
+    return 0;
+}
+
+uint8_t olc6502::BPL()
+{
+    if (GetFlag(N) == 0)
+    {
+        BXX();
+    }
+    return 0;
+}
+
+uint8_t olc6502::BVC()
+{
+    if (GetFlag(V) == 0)
+    {
+        BXX();
+    }
+    return 0;
+}
+
+uint8_t olc6502::BVS()
+{
+    if (GetFlag(V) == 1)
+    {
+        BXX();
+    }
+    return 0;
+}
+//END BRANCH INSTRUCTIONS
+
+//START CLEAR INSTRUCTIONS
+//Clear carry bit
+uint8_t olc6502::CLC()
+{
+    SetFlag(C, false);
+    return 0;
+}
+
+uint8_t olc6502::CLD()
+{
+    SetFlag(D, false);
+    return 0;
+}
+
+uint8_t olc6502::CLI()
+{
+	SetFlag(I, false);
+	return 0;
+}
+
+uint8_t olc6502::CLV()
+{
+	SetFlag(V, false);
+	return 0;
+}
+
+//END CLEAR INSTRUCTIONS
+
+
+//START COUNT INSTRUCTIONS
+uint8_t olc6502::ADC()
+{
+	fetch();
+    uint16_t temp = (uint16_t)a + (uint16_t)fetched + (uint16_t)GetFlag(C);
+    SetFlag(C, temp > 255);
+    SetFlag(Z, (temp & 0x00FF) == 0);
+    SetFlag(N, temp & 0x80);
+    SetFlag(V, (~((uint16_t)a ^ (uint16_t)fetched) & ((uint16_t)a ^ (uint16_t)temp)) & 0x0080);
+    a = temp & 0x00FF;
+    return 1;
+}
+
+uint8_t olc6502::SBC()
+{
+	fetch();
+    uint16_t value = ((uint16_t)fetched) ^ 0x00FF;
+	uint16_t temp = (uint16_t)a + value + (uint16_t)GetFlag(C);
+	SetFlag(C, temp & 0xFF00);
+	SetFlag(Z, ((temp & 0x00FF) == 0));
+	SetFlag(V, (temp ^ (uint16_t)a) & (temp ^ value) & 0x0080);
+	SetFlag(N, temp & 0x0080);
+	a = temp & 0x00FF;
+    return 1;
+}
+//END COUNT INSTRUCTIONS
+//START STACK INSTRUCTIONS
+uint8_t olc6502::PHA()
+{
+	write(0x0100 + stkp, a);
+    stkp--;
+    return 0;
+}
+
+uint8_t olc6502::PLA()
+{
+    stkp++;
+	a = read(0x0100 + stkp);
+    SetFlag(Z, a == 0x00);
+    SetFlag(N, a & 0x80);
+    return 0;
+}
+//END STACK INSTRUCTIONS
+//START INTERRUPTIONS
+void olc6502::reset()
+{
+    a = 0; x = 0; y = 0;
+    stkp = 0xFD;
+    status = 0x00 | U;
+
+    addr_abs = 0xFFFC;
+    uint16_t hi = read(addr_abs + 0);
+    uint16_t lo = read(addr_abs + 1);
+
+    pc = (hi << 8) | lo;
+
+    addr_rel = 0x0000;
+    addr_abs = 0x0000;
+    fetched = 0x00;
+
+    cycles = 8;
+}
+
+inline void olc6502::interrupt(uint16_t hardcoded_addr, int cycles_to_elapse)
+{
+		// Push the program counter to the stack. It's 16-bits dont
+		// forget so that takes two pushes
+		write(0x0100 + stkp, (pc >> 8) & 0x00FF);
+		stkp--;
+		write(0x0100 + stkp, pc & 0x00FF);
+		stkp--;
+
+		// Then Push the status register to the stack
+		SetFlag(B, 0);
+		SetFlag(U, 1);
+		SetFlag(I, 1);
+		write(0x0100 + stkp, status);
+		stkp--;
+
+		// Read new program counter location from fixed address
+		addr_abs = 0xFFFE;
+		uint16_t lo = read(addr_abs + 0);
+		uint16_t hi = read(addr_abs + 1);
+		pc = (hi << 8) | lo;
+
+		// IRQs take time
+		cycles = cycles_to_elapse;
+}
+
+void olc6502::irq()
+{
+	if (GetFlag(I) == 0)
+	{
+        interrupt(0xFFFE, 7);
+	}
+}
+
+void olc6502::nmi()
+{
+    interrupt(0xFFFA, 8);
+}
+
+//END INTERRUPTIONS
+uint8_t olc6502::RTI()
+{
+    stkp++;
+	status = read(0x0100 + stkp);
+    status &= ~B; 
+    status &= ~U; 
+
+    stkp++;
+    pc = (uint16_t)read(0x0100 + stkp);
+    stkp++;
+    pc = (uint16_t)read(0x0100 + stkp) << 8;
+    return 0;
+}
+
+// Instruction: Set Carry Flag
+// Function:    C = 1
+uint8_t olc6502::SEC()
+{
+	SetFlag(C, true);
+	return 0;
+}
+
+
+// Instruction: Set Decimal Flag
+// Function:    D = 1
+uint8_t olc6502::SED()
+{
+	SetFlag(D, true);
+	return 0;
+}
+
+
+// Instruction: Set Interrupt Flag / Enable Interrupts
+// Function:    I = 1
+uint8_t olc6502::SEI()
+{
+	SetFlag(I, true);
+	return 0;
+}
+
+
+// Instruction: Store Accumulator at Address
+// Function:    M = A
+uint8_t olc6502::STA()
+{
+	write(addr_abs, a);
+	return 0;
+}
+
+
+// Instruction: Store X Register at Address
+// Function:    M = X
+uint8_t olc6502::STX()
+{
+	write(addr_abs, x);
+	return 0;
+}
+
+
+// Instruction: Store Y Register at Address
+// Function:    M = Y
+uint8_t olc6502::STY()
+{
+	write(addr_abs, y);
+	return 0;
+}
+
+
+// Instruction: Transfer Accumulator to X Register
+// Function:    X = A
+// Flags Out:   N, Z
+uint8_t olc6502::TAX()
+{
+	x = a;
+	SetFlag(Z, x == 0x00);
+	SetFlag(N, x & 0x80);
+	return 0;
+}
+
+
+// Instruction: Transfer Accumulator to Y Register
+// Function:    Y = A
+// Flags Out:   N, Z
+uint8_t olc6502::TAY()
+{
+	y = a;
+	SetFlag(Z, y == 0x00);
+	SetFlag(N, y & 0x80);
+	return 0;
+}
+
+
+// Instruction: Transfer Stack Pointer to X Register
+// Function:    X = stack pointer
+// Flags Out:   N, Z
+uint8_t olc6502::TSX()
+{
+	x = stkp;
+	SetFlag(Z, x == 0x00);
+	SetFlag(N, x & 0x80);
+	return 0;
+}
+
+
+// Instruction: Transfer X Register to Accumulator
+// Function:    A = X
+// Flags Out:   N, Z
+uint8_t olc6502::TXA()
+{
+	a = x;
+	SetFlag(Z, a == 0x00);
+	SetFlag(N, a & 0x80);
+	return 0;
+}
+
+
+// Instruction: Transfer X Register to Stack Pointer
+// Function:    stack pointer = X
+uint8_t olc6502::TXS()
+{
+	stkp = x;
+	return 0;
+}
+
+
+// Instruction: Transfer Y Register to Accumulator
+// Function:    A = Y
+// Flags Out:   N, Z
+uint8_t olc6502::TYA()
+{
+	a = y;
+	SetFlag(Z, a == 0x00);
+	SetFlag(N, a & 0x80);
+	return 0;
+}
+
+
+// This function captures illegal opcodes
+uint8_t olc6502::XXX()
+{
+	return 0;
+}
+*/

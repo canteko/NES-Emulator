@@ -1,6 +1,6 @@
 #include <cstdint>
 #include <array>
-#include "headers/olc6502.h"
+#include "olc6502.h"
 
 class Bus 
 {

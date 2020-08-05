@@ -2,6 +2,7 @@
 #define OLC6502_H
 
 #include <vector>
+#include <string>
 
 class Bus;
 
@@ -11,6 +12,11 @@ class olc6502
         olc6502();
         ~olc6502();
 
+        void connectBus(Bus *n)
+        {
+            bus = n;
+        }
+    /*
         //FLAGS
         enum FLAGS6502
         {
@@ -31,11 +37,6 @@ class olc6502
         uint8_t stkp = 0x00;
         uint16_t pc = 0x0000;
         uint8_t status = 0x00;
-
-        void connectBus(Bus *n)
-        {
-            bus = n;
-        }
 
         //Addressing modes
         uint8_t IMP();  uint8_t IMM();
@@ -61,6 +62,9 @@ class olc6502
         uint8_t STX();	uint8_t STY();	uint8_t TAX();	uint8_t TAY();
         uint8_t TSX();	uint8_t TXA();	uint8_t TXS();	uint8_t TYA();
 
+        //Default behavior for Branch (BXX)
+        inline uint8_t BXX();
+
         //Unknown opcode
         uint8_t XXX();
 
@@ -68,6 +72,7 @@ class olc6502
         //Signals
         void clock();
         void reset();
+        inline void interrupt(uint16_t hardcoded_addr, int cycles_to_elapse);
         void irq();
         void nmi();
 
@@ -78,9 +83,10 @@ class olc6502
         uint8_t addr_rel = 0x00;
         uint8_t opcode = 0x00;
         uint8_t cycles = 0;
-
+    */
     private:
         Bus *bus = nullptr;
+        /*
 
         void write(uint16_t addr, uint8_t data);
         uint8_t read(uint16_t addr);
@@ -88,7 +94,7 @@ class olc6502
         // Convenience functions to access status register
         uint8_t GetFlag(FLAGS6502 f);
         void    SetFlag(FLAGS6502 f, bool v);
-
+        */
         struct INSTRUCTION
         {
             std::string name;		
@@ -96,7 +102,8 @@ class olc6502
             uint8_t (olc6502::*addrmode)(void) = nullptr;
             uint8_t cycles = 0;
         };
-
+        
         std::vector<INSTRUCTION> lookup;
+        
 };
 #endif
