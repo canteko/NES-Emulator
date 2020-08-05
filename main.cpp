@@ -55,6 +55,8 @@
 	Author
 	~~~~~~
 	David Barr, aka javidx9, ©OneLoneCoder 2019
+
+	g++ main.cpp bus.cpp olc6502.cpp -lX11 -lGL -lpthread -lpng -lstdc++fs -std=c++17
 */
 
 #include <iostream>

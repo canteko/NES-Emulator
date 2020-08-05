@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <map>
 
 class Bus;
 
@@ -16,7 +17,10 @@ class olc6502
         {
             bus = n;
         }
-    /*
+
+        bool complete();
+        std::map<uint16_t, std::string> disassemble(uint16_t nStart, uint16_t nStop);
+
         //FLAGS
         enum FLAGS6502
         {
@@ -68,7 +72,6 @@ class olc6502
         //Unknown opcode
         uint8_t XXX();
 
-
         //Signals
         void clock();
         void reset();
@@ -83,10 +86,9 @@ class olc6502
         uint8_t addr_rel = 0x00;
         uint8_t opcode = 0x00;
         uint8_t cycles = 0;
-    */
+    
     private:
         Bus *bus = nullptr;
-        /*
 
         void write(uint16_t addr, uint8_t data);
         uint8_t read(uint16_t addr);
@@ -94,12 +96,12 @@ class olc6502
         // Convenience functions to access status register
         uint8_t GetFlag(FLAGS6502 f);
         void    SetFlag(FLAGS6502 f, bool v);
-        */
+
         struct INSTRUCTION
         {
             std::string name;		
-            uint8_t (olc6502::*operate)(void) = nullptr;
-            uint8_t (olc6502::*addrmode)(void) = nullptr;
+            uint8_t (*operate)(void) = nullptr;
+            uint8_t (*addrmode)(void) = nullptr;
             uint8_t cycles = 0;
         };
         
